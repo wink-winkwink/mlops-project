@@ -1,6 +1,5 @@
 name: Docker Build Check
 
-# บอก GitHub ว่า "รันทันทีที่มีการ Push โค้ดขึ้นไป"
 on:
   push:
     branches: [ "main" ]
@@ -9,14 +8,11 @@ on:
 
 jobs:
   build:
-    # ใช้คอมพิวเตอร์ของ GitHub (Ubuntu) ในการรัน
     runs-on: ubuntu-latest
 
     steps:
-    # 1. ไปดึงโค้ดจาก Repo ของเรามา
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # 2. ลองสั่ง Build Docker ดูซิว่าพังไหม
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-ml-api:latest
