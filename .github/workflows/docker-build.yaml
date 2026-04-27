@@ -1,0 +1,22 @@
+name: Docker Build Check
+
+# Tell Github to run automatically after push code
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    # Use Github's Computer (Ubuntu) for running
+    rubs-on: ubuntu-latest
+
+    steps:
+    # 1. Pull code from our Repo
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. Try command Docker
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag  my-mml-api:latest
